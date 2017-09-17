@@ -15,22 +15,55 @@
               }
           }
         },
+        watch:{
+            'config':{
+                handler( val,oldVal){
+                     console.log('123',val);
+                      this.ccols = val.cols;
+                      this.data = val.data;
+                         // console.log
+                       layui.table.render({
+                             elem: '#'+this.tableId,
+                             height: this.cheight,
+                             cols: this.ccols,
+                             // url:self.url,
+                             // method:self.method,
+                             // where:self.where,
+                             // request:self. request,
+                             // response:self.response,
+                             data:this.data
+                        });
+                },
+              deep:true
+            }
+        },
         data(){
             return {
                 tableId:'tableId'+Date.now()+Math.floor(Math.random () * 1000),
                 cheight:this.config.height||'auto',
-                ccols:this.config.cols||[[{}]]
+                ccols:this.config.cols||[[{}]],
+                url: this.config.url||'',
+                method: this.config.method || 'get',
+                where:this.config.where ||{},
+                request:this.config.request||{},
+                response:this.config.response||{},
+                data: this.config.data ||[]
             }
         },
-        created(){
+        mounted(){
             let self=this
-            this.$nextTick(function(){
+            console.log
                layui.table.render({
-                     elem: self.tableId,
+                     elem: '#'+self.tableId,
                      height: self.cheight,
-                     cols: self.ccols
+                     cols: self.ccols,
+                     // url:self.url,
+                     // method:self.method,
+                     // where:self.where,
+                     // request:self. request,
+                     // response:self.response,
+                     data:self.data
                 });
-            });
         }
     }
 </script>

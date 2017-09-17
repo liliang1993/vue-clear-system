@@ -21,7 +21,7 @@
             this.$nextTick(function(){
                 let html=document.getElementById(self.layerId).innerHTML;
                 self.defOption.content=html;
-                if(self.options){      
+                if(self.options){
                     Object.assign(self.defOption,self.options)
                 }
                 layer.open(self.defOption);

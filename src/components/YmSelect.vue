@@ -21,8 +21,22 @@
                 }
             }
         },
+        watch:{
+            'value':function(value){
+              var self =this;
+              console.log('value',value,self.options);
+                self.options.forEach(item=>{
+                if(item.Value==value){
+                    self.currentValue={
+                        Text:item.Text,
+                        Value:item.Value
+                    }
+                }
+            })
+            }
+        },
         created(){
-            let self=this
+            let self=this;
             self.options.forEach(item=>{
                 if(item.Value==self.value){
                     self.currentValue={
